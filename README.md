@@ -1,5 +1,3 @@
 # Project
 # Lainausjärjestelmä
-Mikko Lind
-Samuel Antila
-Ossi Rinta-Pollari
+Mikko Lind, Samuel Antila, Ossi Rinta-Pollari
