@@ -7,6 +7,7 @@ class Books(models.Model):
     name = models.CharField(max_length=64)
     author = models.CharField(max_length=32)
     description = models.CharField(max_length=128)
+    copies = models.IntegerField(default=0)
     image = models.ImageField(default='default_book.jpg', upload_to='book_pics')
     pub_date = models.DateTimeField(default=timezone.now)
     def __str__(self):
