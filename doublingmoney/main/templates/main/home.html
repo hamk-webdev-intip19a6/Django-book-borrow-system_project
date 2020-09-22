@@ -1,4 +1,17 @@
 {% extends "main/base.html" %}
 {% block content %}
-    <h1>Home Page</h1>
+    {% for book in books %}
+        <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ book.image.url }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="">Author: {{ book.author }}</a>
+              <p class="mr-2 float-right">Copies: {{ book.copies }}</p>
+              <small class="text-muted">{{ pub_date.date_posted|date:"F d, Y" }}</small>
+            </div>
+            <h2><a class="article-title" href="">{{ book.name }}</a></h2>
+            <p class="article-content">{{ book.description }}</p>
+          </div>
+        </article>
+    {% endfor %}
 {% endblock content %}

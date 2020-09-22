@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 #from django.urls import reverse
 
-class Books(models.Model):
+class Book(models.Model):
     name = models.CharField(max_length=64)
     author = models.CharField(max_length=32)
     description = models.CharField(max_length=128)
@@ -13,7 +13,7 @@ class Books(models.Model):
     def __str__(self):
         return f'Book name: {self.name}, Author: {self.author}'
 
-class Book_reviews(models.Model):
+class Review(models.Model):
     review = models.CharField(max_length=512)
     stars = models.IntegerField(default=0)
     date = models.DateTimeField(default=timezone.now)
@@ -22,7 +22,7 @@ class Book_reviews(models.Model):
         return f'{self.user.username} Reviews'
 
 class Rental(models.Model):
-    book = models.ForeignKey(Books, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
     rental_date = models.DateTimeField(default=timezone.now)
     return_date = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
