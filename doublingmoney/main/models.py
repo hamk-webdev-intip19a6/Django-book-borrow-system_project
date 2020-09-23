@@ -4,15 +4,33 @@ from django.contrib.auth.models import User
 #from django.urls import reverse
 
 class Book(models.Model):
-    name = models.CharField(max_length=64)
+    title = models.CharField(max_length=64)
     author = models.CharField(max_length=32)
     description = models.CharField(max_length=128)
-    copies = models.IntegerField(default=0)
-    image = models.ImageField(default='default_book.jpg', upload_to='book_pics')
-    pub_date = models.DateTimeField(default=timezone.now)
+    pub_date = models.DateField()
+    image = models.ImageField(default='default_book.jpg', upload_to='book_pics')  
+    rental_rate = models.DecimalField(default=4.99, max_digits=4, decimal_places=2)
+    replacement_cost = models.DecimalField(default=29.99, max_digits=5, decimal_places=2)
+    last_update = models.DateTimeField(default=timezone.now)
     def __str__(self):
         return f'Book name: {self.name}, Author: {self.author}'
 
+class Inventory(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+
+class Rental(models.Model):
+    invetory = models.OneToOneField(Inventory, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rental_date = models.DateTimeField(default=timezone.now)
+    expire_date = models.DateTimeField(default=timezone.now)
+
+class Payment(models.Model):
+    user =  models.ForeignKey(User, on_delete=models.RESTRICT)
+    rental = models.ForeignKey(Rental, null=True, on_delete=models.SET_NULL)
+    amount = models.DecimalField(max_digits=6, decimal_places=2)
+    method = models.CharField(max_length=32)
+    payment_date = models.DateTimeField(default=timezone.now)
+    
 class Review(models.Model):
     review = models.CharField(max_length=512)
     stars = models.IntegerField(default=0)
@@ -21,8 +39,3 @@ class Review(models.Model):
     def __str__(self):
         return f'{self.user.username} Reviews'
 
-class Rental(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    rental_date = models.DateTimeField(default=timezone.now)
-    return_date = models.DateTimeField(default=timezone.now)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
