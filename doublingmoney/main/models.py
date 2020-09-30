@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 
 class Book(models.Model):
     title = models.CharField(max_length=64)
-    author = models.CharField(max_length=32)
     description = models.CharField(max_length=128)
     pub_date = models.DateField()
     image = models.ImageField(default='default_book.jpg', upload_to='book_pics')  
@@ -13,7 +12,15 @@ class Book(models.Model):
     replacement_cost = models.DecimalField(default=29.99, max_digits=5, decimal_places=2)
     last_update = models.DateTimeField(default=timezone.now)
     def __str__(self):
-        return f'Book name: {self.name}, Author: {self.author}'
+        return f'{self.title}'
+
+class Author(models.Model):
+    first_name = models.CharField(max_length=32)
+    last_name = models.CharField(max_length=32)
+
+class Book_author(models.Model):
+    author_id = models.ForeignKey(Author, on_delete=models.PROTECT)
+    book_id = models.ForeignKey(Book, on_delete=models.PROTECT)
 
 class Inventory(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
