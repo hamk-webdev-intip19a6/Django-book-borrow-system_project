@@ -13,7 +13,7 @@
             <div>
                 <p> Authors: <p>
                 <ul>
-                {% for a in authors %}
+                {% for a in detail.author.all %}
                     <li>{{ a.first_name }} {{ a.last_name }}</li>
                 {% endfor %}
                 <ul>
