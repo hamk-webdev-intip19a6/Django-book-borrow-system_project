@@ -31,7 +31,7 @@ class SearchResultView(ListView):
         query = self.request.GET.get('q')
         if query:
             book_list = Book.objects.filter(
-                Q(title__icontains=query) 
+                Q(title__icontains=query)
                # | Q(book_author__author_id__first_name__icontains=query)
                # | Q(book_author__author_id__last_name__icontains=query)
             ).annotate(copies=Count('inventory__available'))
@@ -43,9 +43,8 @@ def book(request, book):
     book = book
     book_title = Book.objects.filter(title = book)
     available = Book.objects.filter(inventory__available=True, title=book).annotate(copies=Count('title'))
-    context = {'book_title': book_title, 
+    context = {'book_title': book_title,
                 'available': available}
-                
     return render(request, 'main/book.html', context)
 
 def about(request):

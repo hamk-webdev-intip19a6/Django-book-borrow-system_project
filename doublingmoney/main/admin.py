@@ -4,7 +4,7 @@ from .models import Book, Review, Author, Inventory
 
 class BookAdmin(admin.ModelAdmin):
     fields = [
-        'title', 'description', 'pub_date', 'image', 'rental_rate', 
+        'title', 'description', 'pub_date', 'image', 'rental_rate',
         'replacement_cost', 'author'
     ]
 
@@ -15,7 +15,7 @@ class InventoryAdmin(admin.ModelAdmin):
 
 class AuthorAdmin(admin.ModelAdmin):
     fields = ['first_name', 'last_name']
-    
+
 admin.site.register(Book, BookAdmin)
 admin.site.register(Inventory, InventoryAdmin)
 admin.site.register(Author)
