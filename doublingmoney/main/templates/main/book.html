@@ -1,0 +1,23 @@
+{% extends "main/base.html" %}
+{% block content %}
+    <div>
+        {% for detail in book_title %}
+        <p>title: {{ detail.title }}<p>
+        <p>descripiton: {{ detail.description }}<p>
+        <p>date published: {{ detail.pub_date }}<p>
+        <p>rent cost: {{ detail.rental_rate }}<p>
+            {% for i in available %}
+                <p>available: {{ i.copies }}<p>
+            {% endfor %}
+
+            <div>
+                <p> Authors: <p>
+                <ul>
+                {% for a in authors %}
+                    <li>{{ a.first_name }} {{ a.last_name }}</li>
+                {% endfor %}
+                <ul>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

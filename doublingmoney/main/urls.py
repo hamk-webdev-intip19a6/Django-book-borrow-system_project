@@ -13,6 +13,8 @@ from . import views
 urlpatterns = [
     #path('', PostListView.as_view(), name='home'),
     path('', views.HomeView.as_view(), name='main-home'),
+    path('book/<book>', views.book, name='main-book'),
+    path('search/', views.SearchResultView.as_view(), name='search_results'),
     #path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
     #path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     #path('post/new/', PostCreateView.as_view(), name='post-create'),
