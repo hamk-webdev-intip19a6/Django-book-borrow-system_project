@@ -19,17 +19,19 @@
 
 {% if available_book_list %}
   {% for book in available_book_list %}
-    <p>{{ book }}</p><br>
     <article class="media content-section">
       <img class="rounded-circle article-img" src="{{ book.image.url }}" />
       <div class="media-body">
         <div class="article-metadata">
-          <a class="mr-2" href="">Author: {{ book.book_author }}</a>
+        
+        {% for first_name in author %}
+          <a class="mr-2" href="">Authors: {{ book.book_author }}</a>
+        {% endfor %}
+        
           <p class="mr-2 float-right">Available: {{ book.copies }}</p>
           <small class="text-muted">{{ pub_date.date_posted|date:"F d, Y" }}</small>
         </div>
-        <h2><a class="article-title" href="">{{ book.name }}</a></h2>
-        <p class="article-content">{{ book.title }}</p>
+        <h2><a class="article-title" href="">{{ book.title }}</a></h2>
         <p class="article-content">{{ book.description }}</p>
       </div>
     </article>

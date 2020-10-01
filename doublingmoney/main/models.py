@@ -17,13 +17,10 @@ class Book(models.Model):
 class Author(models.Model):
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
-
     class Meta:
         unique_together = ["first_name", "last_name"]
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
-
-
 
 class Book_author(models.Model):
     author = models.ForeignKey(Author, on_delete=models.PROTECT)
@@ -51,7 +48,7 @@ class Payment(models.Model):
     amount = models.DecimalField(max_digits=6, decimal_places=2)
     method = models.CharField(max_length=32)
     payment_date = models.DateTimeField(default=timezone.now)
-    
+
 class Review(models.Model):
     review = models.CharField(max_length=512)
     stars = models.IntegerField(default=0)
@@ -59,4 +56,3 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return f'{self.user.username} Reviews'
-
