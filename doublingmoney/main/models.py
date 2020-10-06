@@ -27,7 +27,7 @@ class Book(models.Model):
 class Inventory(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     available = models.BooleanField('Available', default=False)
-s
+    
     def __str__(self):
         return f'{self.book}'
 
