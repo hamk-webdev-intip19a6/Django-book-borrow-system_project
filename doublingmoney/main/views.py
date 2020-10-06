@@ -31,21 +31,17 @@ class SearchResultView(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('q')
-        if query:
-            # | Q(book_author__author_id__first_name__icontains=query)
-            # | Q(book_author__author_id__last_name__icontains=query)
-            book_list = Book.objects.filter(title__icontains=query
-                        ).annotate(copies=Count('title'))
-
-        else:
-            book_list = Book.objects.filter(
+        book_list = Book.objects.filter(
                 inventory__available__isnull=False).annotate(
                     available=Count(
                         Case(When(inventory__available=True, then=Value(1))
                     )
                 )
             )
-            print(book_list.query)
+        if query:
+            # | Q(book_author__author_id__first_name__icontains=query)
+            # | Q(book_author__author_id__last_name__icontains=query)
+            book_list = book_list.filter(title__icontains=query)      
         return book_list
 
 
