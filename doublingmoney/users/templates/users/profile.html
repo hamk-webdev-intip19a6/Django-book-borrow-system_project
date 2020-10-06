@@ -21,4 +21,29 @@
           </div>
       </form>
     </div>
+
+    <div class="rentals">
+    {% if rentals %}
+       {% for item in rentals.all %}
+        <p>title: {{ item.inventory }}<p>
+        <p>Rental Date: {{ item.rental_date }}<p>
+        <p>Rental Date: {{ item.expire_date }}<p>
+        {% endfor %}
+    {% else %}
+        <p> no active rentals </p>
+    {% endif %}
+    </div>
+
+    <div class="payments">
+       {% if payments %}
+       {% for item in payments %}
+        <p>Book rented paid: {{ item.rental.inventory }}<p>
+        <p>Rent cost: {{ item.amount }} €<p>
+        <p>Method: {{ item.method }}<p>
+        <p>Payment Date: {{ item.payment_date }}<p>
+        {% endfor %}
+    {% else %}
+        <p> no payments </p>
+    {% endif %}
+    </div>
 {% endblock content %}

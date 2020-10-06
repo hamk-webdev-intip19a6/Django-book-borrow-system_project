@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Book, Review, Author, Inventory
+from .models import Book, Review, Author, Inventory, Rental, Payment
 
 class BookAdmin(admin.ModelAdmin):
     fields = [
@@ -20,4 +20,6 @@ admin.site.register(Book, BookAdmin)
 admin.site.register(Inventory, InventoryAdmin)
 admin.site.register(Author)
 admin.site.register(Review)
+admin.site.register(Rental)
+admin.site.register(Payment)
 

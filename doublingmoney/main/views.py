@@ -11,7 +11,7 @@ from django.views.generic import (
 )
 from django.db.models import Count, Q, OuterRef, Subquery, Value, When, Case
 from django.db.models.functions import Concat
-from .models import Book, Inventory, Author
+from .models import Book, Inventory, Author, Payment, Rental
 
 
 class HomeView(ListView):
@@ -58,3 +58,19 @@ def book(request, book):
 
 def about(request):
     return render(request, 'main/about.html', {'title': 'About'})
+
+def Rental(request):
+    user = request.user
+    rents = User.objects.all()
+    context = {'rentals': rents}
+
+    return render(request, 'main/home.html', context)
+
+class PaymentView(ListView):
+    template_name = 'users/profile.html'
+    context_object_name = "payments"
+
+    def get_queryset(self):
+        q = Payment.objects.filter(user_id=self.request.user.id)
+        return "ssaa"
+
