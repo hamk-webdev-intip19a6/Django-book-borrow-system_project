@@ -1,12 +1,12 @@
 {% extends "main/base.html" %}
 {% block content %}
-   {% for book in book_list.all %}
+   {% for book in book_list %}
     <article class="media content-section">
       <img class="rounded-circle article-img" src="{{ book.image.url }}" />
       <div class="media-body">
         <div class="article-metadata">
           <a class="mr-2" href="">Authors: {% for author in book.author.all %}{{ author }}<br/>{% endfor %}</a>
-          <p class="mr-2 float-right">Available: {{ book.copies }}</p>
+          <p class="mr-2 float-right">Available: {{ book.available}}</p>
           <small class="text-muted">{{ pub_date.date_posted|date:"F d, Y" }}</small>
         </div>
         <h2><a class="article-title" href="/book/{{book.title}}">{{ book.title }}</a></h2>

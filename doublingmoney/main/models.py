@@ -16,11 +16,11 @@ class Book(models.Model):
     author = models.ManyToManyField(Author)
     description = models.CharField(max_length=128)
     pub_date = models.DateField('date published')
-    image = models.ImageField(default='default_book.jpg', upload_to='book_pics')  
+    image = models.ImageField(default='default_book.jpg', upload_to='book_pics')
     rental_rate = models.DecimalField(default=4.99, max_digits=4, decimal_places=2)
     replacement_cost = models.DecimalField(default=29.99, max_digits=5, decimal_places=2)
     last_update = models.DateTimeField(default=timezone.now)
-    
+
     def __str__(self):
         return f'{self.title}'
 
