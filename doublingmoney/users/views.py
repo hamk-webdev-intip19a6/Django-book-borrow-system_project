@@ -3,6 +3,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
+from django.apps import apps
+Rental = apps.get_model('main', 'Rental')
+Payment = apps.get_model('main', 'Payment')
+
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -17,6 +21,7 @@ def register(request):
 
 @login_required
 def profile(request):
+    uid = request.user.id
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -28,8 +33,13 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    rents = Rental.objects.filter(user_id=uid)
+    payments = Payment.objects.filter(user_id=uid)
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form,
+        'rentals': rents,
+        'payments': payments,
     }
     return render(request, 'users/profile.html', context)

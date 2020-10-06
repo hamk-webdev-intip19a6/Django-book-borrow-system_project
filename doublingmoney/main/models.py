@@ -32,7 +32,7 @@ class Inventory(models.Model):
         return f'{self.book}'
 
 class Rental(models.Model):
-    invetory = models.OneToOneField(Inventory, on_delete=models.PROTECT)
+    inventory = models.OneToOneField(Inventory, on_delete=models.PROTECT)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     rental_date = models.DateTimeField(default=timezone.now)
     expire_date = models.DateTimeField(default=timezone.now)
