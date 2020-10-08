@@ -50,6 +50,7 @@ class Review(models.Model):
     review = models.CharField(max_length=512)
     stars = models.IntegerField(default=0)
     date = models.DateTimeField(default=timezone.now)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

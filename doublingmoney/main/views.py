@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+
 #from django.views import generic
 from django.views.generic import (
     ListView,
@@ -9,9 +10,9 @@ from django.views.generic import (
     # UpdateView,
     # DeleteView
 )
-from django.db.models import Count, Q, OuterRef, Subquery, Value, When, Case
+from django.db.models import Count, Q, OuterRef, Subquery, Value, When, Case, Avg, Max, Min, Sum
 from django.db.models.functions import Concat
-from .models import Book, Inventory, Author, Payment, Rental
+from .models import Book, Inventory, Author, Payment, Rental, Review
 
 
 class HomeView(ListView):
@@ -46,13 +47,17 @@ class SearchResultView(ListView):
 
 
 def book(request, book):
-    book = book
+    b = Book.objects.get(title=book)
+    avg = Review.objects.filter(book=b.id).aggregate(s=Avg('stars'))['s']
+    
+    comments = Review.objects.filter(book=b.id)
+    
     book_title = Book.objects.filter(title=book)
     available = Book.objects.filter(
         inventory__available=True, title=book).annotate(copies=Count('title'))
     context = {'book_title': book_title,
-               'available': available}
-
+               'available': available, 'avg':avg, 'comments': comments }
+    
     return render(request, 'main/book.html', context)
 
 
