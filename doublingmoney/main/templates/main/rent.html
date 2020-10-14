@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+{% block content %}
+
+    <p>title: {{ book.title }}<p>
+
+    <form action="{% url 'main:rent' book.id %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+{% endblock content %}

@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'users.apps.UsersConfig',
     'crispy_forms', # pip install django-crispy-forms
+    'star_ratings', # pip install django-star-ratings
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -138,7 +139,7 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'main-home'
+LOGIN_REDIRECT_URL = 'main:main-home'
 LOGIN_URL = 'login'
 
 # Email settings

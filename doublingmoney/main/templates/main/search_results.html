@@ -9,7 +9,7 @@
           <p class="mr-2 float-right">Available: {{ book.available}}</p>
           <small class="text-muted">{{ pub_date.date_posted|date:"F d, Y" }}</small>
         </div>
-        <h2><a class="article-title" href="/book/{{book.title}}">{{ book.title }}</a></h2>
+        <h2><a class="article-title" href="{% url 'main:main-book' book.id %}">{{ book.title }}</a></h2>
         <p class="article-content">{{ book.description }}</p>
       </div>
     </article>

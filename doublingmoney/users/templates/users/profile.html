@@ -24,26 +24,38 @@
 
     <div class="rentals">
     {% if rentals %}
-       {% for item in rentals.all %}
-        <p>title: {{ item.inventory }}<p>
-        <p>Rental Date: {{ item.rental_date }}<p>
-        <p>Rental Date: {{ item.expire_date }}<p>
+    <h1> Rentals </h1>
+    <table style="width:100%">
+    <tr>
+      <th>Book title</th>
+      <th>Rental date</th>
+      <th>Expire date</th>
+      <th>Return Date</th>
+      <th></th>
+    </tr>
+      {% for item in rentals.all %}
+      <tr>
+        <td>{{ item.inventory }}</td>
+        <td>{{ item.rental_date }}</td>
+        <td>{{ item.expire_date }}</td>
+      {% if item.book_returned == False %}
+      <td>
+        <form action="{% url 'main:returnBook' item.id %}" method="post">
+          {% csrf_token %}
+          <input type="submit" value="Return Book">
+        </form>
+      </td>
+        </tr>
+        {% else %}
+        <td>{{ item.return_date }}</td>
+        </tr>
+        {% endif %}
+
         {% endfor %}
     {% else %}
         <p> no active rentals </p>
     {% endif %}
+    </table>
     </div>
 
-    <div class="payments">
-       {% if payments %}
-       {% for item in payments %}
-        <p>Book rented paid: {{ item.rental.inventory }}<p>
-        <p>Rent cost: {{ item.amount }} €<p>
-        <p>Method: {{ item.method }}<p>
-        <p>Payment Date: {{ item.payment_date }}<p>
-        {% endfor %}
-    {% else %}
-        <p> no payments </p>
-    {% endif %}
-    </div>
 {% endblock content %}

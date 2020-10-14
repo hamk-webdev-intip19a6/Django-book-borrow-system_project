@@ -1,0 +1,44 @@
+{% extends "main/base.html" %}
+{% block content %}
+{% if available_book_list %}
+<h1>All books</h1>
+  {% for book in available_book_list.all %}
+    <article class="media content-section">
+      <img class="rounded-circle article-img" src="{{ book.image.url }}" />
+      <div class="media-body">
+        <div class="article-metadata">
+          <a class="mr-2" href="">Authors: {% for author in book.author.all %}{{ author }}<br/>{% endfor %}</a>
+          <p class="mr-2 float-right">Available: {{ book.copies }}</p>
+          <small class="text-muted">{{ pub_date.date_posted|date:"F d, Y" }}</small>
+        </div>
+        <h2><a class="article-title" href="{% url 'main:main-book' book.id %}">{{ book.title }}</a></h2>
+        <p class="article-content">{{ book.description }}</p>
+      </div>
+    </article>
+  {% endfor %}
+  
+{% else %}
+<p>No books are available.</p>
+{% endif %}
+
+{% if is_paginated %}
+  {% if page_obj.has_previous %}
+    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+  {% endif %}
+
+  {% for num in page_obj.paginator.page_range %}
+    {% if page_obj.number == num %}
+      <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+      <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% endif %}
+  {% endfor %}
+
+  {% if page_obj.has_next %}
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+  {% endif %}
+{% endif %}
+
+{% endblock content %}

@@ -5,7 +5,6 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 from django.apps import apps
 Rental = apps.get_model('main', 'Rental')
-Payment = apps.get_model('main', 'Payment')
 
 def register(request):
     if request.method == 'POST':
@@ -34,12 +33,10 @@ def profile(request):
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
-    rents = Rental.objects.filter(user_id=uid)
-    payments = Payment.objects.filter(user_id=uid)
+    rents = Rental.objects.filter(user_id=uid).order_by('book_returned', 'expire_date')[:5]
     context = {
         'u_form': u_form,
         'p_form': p_form,
         'rentals': rents,
-        'payments': payments,
     }
     return render(request, 'users/profile.html', context)

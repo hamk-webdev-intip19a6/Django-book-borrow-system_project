@@ -1,7 +1,8 @@
 {% extends "main/base.html" %}
 {% block content %}
-{% if available_book_list %}
-  {% for book in available_book_list.all %}
+{% if rate %}
+<h1>Top 5 Rated books</h1>
+  {% for book in rate.all %}
     <article class="media content-section">
       <img class="rounded-circle article-img" src="{{ book.image.url }}" />
       <div class="media-body">
@@ -10,12 +11,15 @@
           <p class="mr-2 float-right">Available: {{ book.copies }}</p>
           <small class="text-muted">{{ pub_date.date_posted|date:"F d, Y" }}</small>
         </div>
-        <h2><a class="article-title" href="/book/{{book.title}}">{{ book.title }}</a></h2>
+        <h2><a class="article-title" href="{% url 'main:main-book' book.id %}">{{ book.title }}</a></h2>
         <p class="article-content">{{ book.description }}</p>
       </div>
     </article>
   {% endfor %}
+  
 {% else %}
 <p>No books are available.</p>
 {% endif %}
+
+
 {% endblock content %}
