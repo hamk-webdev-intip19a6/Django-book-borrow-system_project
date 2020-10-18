@@ -1,34 +1,51 @@
 {% extends "main/base.html" %}
 {% block content %}
 
-    <div class="banner">
-        <canvas class="canvas"></canvas>
-        <div class="App-Text">
+
+    <!-- Preloader Start -->
+
+        <div class="d-flex align-items-center justify-content-center">
+            <div class="position-relative">
+
+
+                        <div class="banner">
+
             <h1>Welcome to DoublingMoney's loan service</h1>
+
+        <canvas class="canvas"></canvas>
+                </div>
+
         </div>
-        
-    </div>
+        </div>
+
+    
+    
 {% if rate %}
 
         <div class="latest">
             <hr style="width:30%;float: left;"><hr style="width:30%;float: right;">
             <h1 style="text-align: center;color: white;">Top rated books</h1>
         </div>
+        
+<div class="books">
+
 {% for book in rate.all %}
 
         
-        <div class="books">
+        
         
             <div class="book">
                 <a target="_blank" href="{% url 'main:main-book' book.id %}">
                   <img src="{{ book.image.url }}" alt="Book">
                 </a>
             </div>
-        </div>
+        
 
 
         
 {% endfor %}
+
+</div>
 
 {% else %}
 <p>No books are available.</p>
