@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Reset password</title>
+        <link rel="stylesheet" href="css/reset.css">
+    </head>
+    <body>
+        <div class="center">
+            <h1>Reset password</h1>
+            <form method="POST">
+                <div class="txt_field">
+                    <input type="text" pattern="\d{5}" required>
+                    <span></span>
+                    <label>Type verification number</label>
+                </div>
+                <div class="txt_field">
+                    <input type="password" required>
+                    <span></span>
+                    <label>New password</label>
+                </div>
+                <div class="txt_field">
+                    <input type="password" required>
+                    <span></span>
+                    <label>Confirm new password</label>
+                </div>
+                <input type="submit" value="Set password" onclick="alert('New password set');">
+                <br><br><br>
+            </form>
+        </div>
+        
+    </body>
+</html>
