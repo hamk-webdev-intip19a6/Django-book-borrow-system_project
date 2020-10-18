@@ -31,9 +31,10 @@
             <div class="navbar-nav mr-auto">
 
             
-            
-              <a class="nav-item nav-link" href="{% url 'main:main-home' %}">Home</a>
-              <a class="nav-item nav-link" href="{% url 'main:main-books' %}">Books</a>
+            {% url 'main:main-home' as h %}
+            {% url 'main:main-books' as b %}
+              <a {% if request.path == h %} class="nav-item nav-link active"  {% else %} class="nav-item nav-link" {% endif %} href="{% url 'main:main-home' %}">Home</a>
+              <a {% if request.path == b %} class="nav-item nav-link active"  {% else %} class="nav-item nav-link" {% endif %} href="{% url 'main:main-books' %}">Books</a>
 
             </div>
             
