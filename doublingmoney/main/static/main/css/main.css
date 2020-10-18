@@ -15,6 +15,7 @@ hr {
     border-color: #5a2e98;
 }
 
+
 .main-content {
   padding: 70px 10px;
 }
@@ -333,14 +334,14 @@ hr {
 }
 
 .genric-btn.purple-border {
-  color: #5a2e98;
-  border: 1px solid #5a2e98;
-  background: #fff
+  color: #8403fc;
+  border: 1px solid #8403fc;
+  background: transparent
 }
 
 .genric-btn.purple-border:hover {
   color: #fff;
-  background: #49257b ;
+  background: #6b00cf;
   border: 1px solid transparent
 }
 
