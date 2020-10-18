@@ -2,11 +2,11 @@ var canvas = document.querySelector('canvas');
 var c = canvas.getContext('2d');
 
 
-canvas.width = window.innerWidth;
+//canvas.width = window.innerWidth;
 canvas.height = window.innerHeight / 2 + 90;
 
 window.addEventListener("resize", function() {
-    canvas.width = window.innerWidth;
+    //canvas.width = window.innerWidth;
     canvas.height = window.innerHeight / 2 + 90;
 });
 

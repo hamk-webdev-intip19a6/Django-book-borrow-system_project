@@ -2,53 +2,59 @@
 {% block content %}
 
 
-    <!-- Preloader Start -->
+    <div class="jumbotron bg-banner">
+      <div class="text-white text-center">
+          <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Infernal Capes</strong></h2>
+          <p class="mx-5 mb-5">
+            Get your inferno today!
+          </p>
+      </div>
+    </div>
 
-        <div class="d-flex align-items-center justify-content-center">
-            <div class="position-relative">
 
 
-                        <div class="banner">
 
-            <h1>Welcome to DoublingMoney's loan service</h1>
-
-        <canvas class="canvas"></canvas>
-                </div>
-
-        </div>
-        </div>
-
-    
-    
+<div class="container">
 {% if rate %}
 
-        <div class="latest">
-            <hr style="width:30%;float: left;"><hr style="width:30%;float: right;">
-            <h1 style="text-align: center;color: white;">Top rated books</h1>
-        </div>
-        
-<div class="books">
+    <h1 style="text-align: center; color: white;">Top rated books</h1><hr>
 
-{% for book in rate.all %}
 
-        
-        
-        
-            <div class="book">
+                
+          <div class="row">
+          
+          {% for book in rate.all %}
+            <div class="col-md-4">
+              <div class="card bg-dark-b mb-4 shadow-sm" style="width: 20rem;">
+              
                 <a target="_blank" href="{% url 'main:main-book' book.id %}">
-                  <img src="{{ book.image.url }}" alt="Book">
+                <img class="card-img-top" data-src="" alt="Thumbnail" style="height: 300px; width: 100%; display: block;" src="{{ book.image.url }}" data-holder-rendered="true">
                 </a>
+            
+                <div class="card-body">
+                
+                <b class="article-title">{{ book.title }}</b>
+                
+                  <p class="card-text"></p>
+  
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a href="{% url 'main:main-book' book.id %}" class="btn btn-sm genric-btn primary">Order</a>
+                    </div>
+                    <small class="text-muted" >Available: {{ book.copies }}</small>
+                  </div>
+                </div>
+              </div>
             </div>
-        
+            {% endfor %}
 
+          </div>
+        </div>
 
-        
-{% endfor %}
-
-</div>
 
 {% else %}
 <p>No books are available.</p>
 {% endif %}
+
 
 {% endblock content %}

@@ -2,6 +2,81 @@
 {% load crispy_forms_tags %}
 {% load ratings %}
 {% block content %}
+<div class="container">
+<div class="main-content">
+
+<div class="col-md-14">
+
+                            <!-- PANEL HEADLINE -->
+                            <div class="panel panel-headline">
+                            
+                                <div class="panel-heading">
+                                    <h4 class="">{{ book.title }}</h4>
+                                
+
+
+
+
+                                <!-- PROFILE HEADER -->
+                                <div class="profile-header">
+                                    <div class="overlay"></div>
+                                    <div class="profile-main">
+                                        <img src="{{ book.image.url }}" class="float-left" alt="Avatar">
+                                        <p >asdasdasdasdasdadsdasd</p>
+                                        <h3 class="name">Guest</h3>
+                                        <span class="online-status status-available">Online</span>
+                                    </div>
+                                    <hr>
+                                </div>
+
+                                </div>
+                                
+                                
+                                <div class="panel-heading">
+                                <!-- END PROFILE HEADER -->
+                                <!-- PROFILE DETAIL -->
+                                <div class="profile-detail">
+                                    <div class="profile-info">
+                                        <h4 class="heading">Basic Info</h4>
+                                        <ul class="list-unstyled list-justify">
+                                            <li><i class="fa fa-user user-profile-icon"></i> Membership <span>Premium</span></li>
+                                            <li><i class="fa fa-calendar-minus-o user-profile-icon"></i> Expire Date <span>30 Aug, 2019</span></li>
+                                            <li><i class="fa fa-calendar user-profile-icon"></i> Member since <span> 30 Oct, 2019</span></li>
+                                            <li><i class="fa fa-clock-o user-profile-icon"></i> Last active <span> 1 minutes ago</span></li>
+                                            <li><i class="fa fa-bar-chart user-profile-icon"></i> Transactions <span> 70</span></li>
+                                            <li><i class="fa fa-dollar user-profile-icon"></i> Profit <span> 1337$</span></li>
+                                        </ul>
+                                    </div>
+                                    <hr>
+                                    <div class="profile-info">
+                                        <h4 class="heading">Social</h4>
+                                        <ul class="list-inline social-icons">
+                                            <li><a href="https://facebook.com" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="https://twitter.com" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="https://reddit.com" class="reddit-bg"><i class="fa fa-reddit"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <br>
+
+                                </div>
+                                <!-- END PROFILE DETAIL -->
+
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">
+									<a class="font-bold" data-toggle="collapse" data-parent="#faq1" href="#faq1" aria-expanded="false">How it works? <i class="icon-submenu lnr lnr-chevron-down"></i></a></h3>
+                                        </div>
+                                        
+                                        
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+</div>
+
+
     <div>
         
         <p>title: {{ book.title }}<p>
@@ -57,5 +132,7 @@
         </form>
     </div>
     {% endif %}
-    
+</div>
+</div>
+
 {% endblock content %}

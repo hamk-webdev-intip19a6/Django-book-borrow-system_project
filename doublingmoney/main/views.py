@@ -25,7 +25,7 @@ class HomeView(ListView):
     template_name = 'main/home.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'rate'
     def get_queryset(self):
-        q = Book.objects.filter(inventory__available=True).filter(ratings__isnull=False).annotate(copies=Count('title')).order_by('-ratings__average')[:5]
+        q = Book.objects.filter(inventory__available=True).filter(ratings__isnull=False).annotate(copies=Count('title')).order_by('-ratings__average')[:6]
         return q
 
 class BooksListing(ListView):
@@ -33,7 +33,7 @@ class BooksListing(ListView):
     context_object_name = "available_book_list"
     model = Book
     ordering = ['-date_posted']
-    paginate_by = 5
+    paginate_by = 6
     def get_queryset(self):
         # returns list of available books.IF many of the same book add copies count
         q = Book.objects.filter(inventory__available=True).annotate(copies=Count('title'))

@@ -1,0 +1,53 @@
+{% extends "main/base.html" %}
+{% block content %}
+
+
+
+
+<div class="jumbotron">
+        <div class="container">
+        <canvas class="canvas"></canvas>
+          <h1 class="display-3">Hello, world!</h1>
+          <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+        </div>
+</div>
+
+
+
+
+
+    
+    
+{% if rate %}
+
+        <div class="latest">
+            <hr style="width:30%;float: left;"><hr style="width:30%;float: right;">
+            <h1 style="text-align: center;color: white;">Top rated books</h1>
+        </div>
+        
+<div class="books">
+
+{% for book in rate.all %}
+
+        
+        
+        
+            <div class="book">
+                <a target="_blank" href="{% url 'main:main-book' book.id %}">
+                  <img src="{{ book.image.url }}" alt="Book">
+                </a>
+            </div>
+        
+
+
+        
+{% endfor %}
+
+</div>
+
+{% else %}
+<p>No books are available.</p>
+{% endif %}
+
+{% endblock content %}
