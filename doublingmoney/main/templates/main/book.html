@@ -7,99 +7,71 @@
 
 <div class="col-md-14">
 
-                            <!-- PANEL HEADLINE -->
+
                             <div class="panel panel-headline">
                             
                                 <div class="panel-heading">
-                                    <h4 class="">{{ book.title }}</h4>
-                                
-
-
-
-
-                                <!-- PROFILE HEADER -->
-                                <div class="d-flex flex-nowrap">
-                                <div class="profile-header">
-
-                                        <img src="{{ book.image.url }}" class="float-left" alt="Avatar">
-                                        <p >asdasdasdasdasdadsdasd</p>
-                                        <h3 class="name">Guest</h3>
-                                        <span class="online-status status-available">Online</span>
+                                <p style="float: right;">Copies: {{ book.copies }}<p>
+                                    <h4>{{ book.title }}</h4>
+                                    
+                                    
 
                                     <hr>
-                                </div>
-                                </div>
+                                {% ratings book %}
+                                <hr>
                                 
 
+                <b> Author(s):</b>
+                <ul>
+                {% for a in book.author.all %}
+                    <li>{{ a.first_name }} {{ a.last_name }}</li>
+                {% endfor %}
+                </ul>
+<hr>
+
+<div class="row">
+						<div class="col-md-3">
+							<img src="{{ book.image.url }}" alt="Image" height="200" width="300" class="img-fluid">
+						</div>
+						<div class="col-md-9 mt-sm-20">
+							<p>
+                            {{ book.description }}
+                            </p>
+						</div>
+					</div>
+<hr>
+
                                 
-                                <!-- END PROFILE HEADER -->
-                                <!-- PROFILE DETAIL -->
-                                <div class="profile-detail">
+
+
+
                                     <div class="profile-info">
-                                        <h4 class="heading">Basic Info</h4>
+                                        <h4 class="heading">Publish Date</h4>
                                         <ul class="list-unstyled list-justify">
-                                            <li><i class="fa fa-user user-profile-icon"></i> Membership <span>Premium</span></li>
-                                            <li><i class="fa fa-calendar-minus-o user-profile-icon"></i> Expire Date <span>30 Aug, 2019</span></li>
-                                            <li><i class="fa fa-calendar user-profile-icon"></i> Member since <span> 30 Oct, 2019</span></li>
-                                            <li><i class="fa fa-clock-o user-profile-icon"></i> Last active <span> 1 minutes ago</span></li>
-                                            <li><i class="fa fa-bar-chart user-profile-icon"></i> Transactions <span> 70</span></li>
-                                            <li><i class="fa fa-dollar user-profile-icon"></i> Profit <span> 1337$</span></li>
+                                            <li><i class="fa fa-calendar user-profile-icon"></i> <span> {{ book.pub_date }} </span></li>
                                         </ul>
                                     </div>
-                                    <hr>
-                                    <div class="profile-info">
-                                        <h4 class="heading">Social</h4>
-                                        <ul class="list-inline social-icons">
-                                            <li><a href="https://facebook.com" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="https://twitter.com" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="https://reddit.com" class="reddit-bg"><i class="fa fa-reddit"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <br>
-
-                                </div>
-                                <!-- END PROFILE DETAIL -->
 
 
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">
-									<a class="font-bold" data-toggle="collapse" data-parent="#faq1" href="#faq1" aria-expanded="false">How it works? <i class="icon-submenu lnr lnr-chevron-down"></i></a></h3>
-                                        </div>
-                                        
-                                        
-                                        
-                                    </div>
+
+
+<hr>
+
+    <form action="{% url 'main:rent' book.id %}" method="GET">
+        {% csrf_token %}
+        <input type="submit" class="genric-btn default" value="Rent this book">
+        
+                               
+    </form>
                                 </div>
                                 
                             </div>
 </div>
 
 
-    <div>
-        
-        <p>title: {{ book.title }}<p>
-        <p>descripiton: {{ book.description }}<p>
-        <p>date published: {{ book.pub_date }}<p>
-        <p>rent cost: {{ book.rental_rate }}<p>       
-        <p>available: {{ book.copies }}<p>
-        <p>Rating: {{ book.avg }} </p>
-            <div>
-                <p> Authors: <p>
-                <ul>
-                {% for a in book.author.all %}
-                    <li>{{ a.first_name }} {{ a.last_name }}</li>
-                {% endfor %}
-                <ul>
-            </div>
-        
-    </div>
+
     
-    {% ratings book %}
-    <form action="{% url 'main:rent' book.id %}" method="get">
-        {% csrf_token %}
-        <input type="submit" value="Rent">
-    </form>
+    
     
     <div>
         <p>comments</p>
