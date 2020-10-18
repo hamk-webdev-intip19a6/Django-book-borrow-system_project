@@ -22,7 +22,7 @@
       <nav class="navbar navbar-expand-md navbar-dark bg-dark-b fixed-top">
         <div class="container">
         
-        <a class="navbar-brand mr-4" href="{% url 'main:main-home' %}">Doubling Money</a>
+        <a class="navbar-brand mr-4" style="text-align: center; color: #8403fc;font-family:'Courier New';text-shadow: 0 0 20px #49257b;" href="{% url 'main:main-home' %}">EzLoans</a>
              
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -44,7 +44,7 @@
               <form method="GET" action="{% url 'main:search_results' %}" id="searchform" class="form-inline my-2 my-lg-0">
                                  <input class="form-box-txt" id="searchbox" name="q" type="text" value="{{ request.GET.q }}" placeholder="Search..." />
                                  <div class="input-group-append">
-                                    <button class="genric-btn primary" type="submit"><i class="fa fa-search"></i></button>
+                                    <button class="genric-btn purple" type="submit"><i class="fa fa-search"></i></button>
                                  </div>
             </form>
 
@@ -57,7 +57,7 @@
               {% if user.is_authenticated %}
 <!-- Example single danger button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button type="button" class="btn btn-primary dropdown-toggle" style="background-color: #5a2e98;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
      <i class="fa fa-user" aria-hidden="true"></i> {{ user.username }}
   </button>
   <div class="dropdown-menu">
@@ -96,8 +96,8 @@
                     <div class="row d-flex justify-content-between align-items-center">
                         <div class="col-xl-9 col-lg-9 ">
                             <div class="footer-copy-right">
-                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> Book store</p>
+                                <p>
+                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> EzLoans </p>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-3">
