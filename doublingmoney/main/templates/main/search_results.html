@@ -1,17 +1,77 @@
 {% extends "main/base.html" %}
 {% block content %}
-   {% for book in book_list %}
-    <article class="media content-section">
-      <img class="rounded-circle article-img" src="{{ book.image.url }}" />
-      <div class="media-body">
-        <div class="article-metadata">
-          <a class="mr-2" href="">Authors: {% for author in book.author.all %}{{ author }}<br/>{% endfor %}</a>
-          <p class="mr-2 float-right">Available: {{ book.available}}</p>
-          <small class="text-muted">{{ pub_date.date_posted|date:"F d, Y" }}</small>
-        </div>
-        <h2><a class="article-title" href="{% url 'main:main-book' book.id %}">{{ book.title }}</a></h2>
-        <p class="article-content">{{ book.description }}</p>
-      </div>
-    </article>
+<div class="container">
+<div class="main-content">
+{% if book_list %}
+        <ol class="breadcrumb bg-dark-b">
+            <li class="breadcrumb-item" style="color: #fff;" >Page</li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <span style="color: #fff;">
+                Books
+                </span>
+            </li>
+        </ol>
+
+                
+          <div class="row">
+          
+          {% for book in book_list.all %}
+            <div class="col-md-4">
+              <div class="card bg-dark-b mb-4 shadow-sm" style="width: 20rem;">
+              
+                <a target="_blank" href="{% url 'main:main-book' book.id %}">
+                <img class="card-img-top" data-src="" alt="Thumbnail" style="height: 300px; width: 100%; display: block;" src="{{ book.image.url }}" data-holder-rendered="true">
+                </a>
+                <hr>
+                <div class="card-body">
+                
+                <b class="article-title">{{ book.title }}</b>
+                
+                  <p class="card-text"></p>
+  
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a href="{% url 'main:main-book' book.id %}" class="btn btn-sm genric-btn purple">Order</a>
+                    </div>
+                    <small class="text-muted" >Available: {{ book.copies }}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+        
+
+
+{% else %}
+  <div class="card bg-dark-b">
+    <div class="card-body">Not found</div>
+  </div>
+
+{% endif %}
+
+{% if is_paginated %}
+  {% if page_obj.has_previous %}
+    <a class="btn btn-sm genric-btn purple-border mb-4" href="?page=1">First</a>
+    <a class="btn btn-sm genric-btn purple-border mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+  {% endif %}
+
+  {% for num in page_obj.paginator.page_range %}
+    {% if page_obj.number == num %}
+      <a class="btn btn-sm genric-btn purple-border mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+      <a class="btn btn-sm genric-btn purple-border mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% endif %}
   {% endfor %}
+
+  {% if page_obj.has_next %}
+    <a class="btn btn-sm genric-btn purple-border mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+    <a class="btn btn-sm genric-btn purple-border mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+  {% endif %}
+{% endif %}
+
+</div>
+
+</div>
 {% endblock content %}

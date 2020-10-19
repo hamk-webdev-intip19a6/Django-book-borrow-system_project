@@ -31,7 +31,7 @@
 
 <div class="row">
 						<div class="col-md-3">
-							<img src="{{ book.image.url }}" alt="Image" height="200" width="300" class="img-fluid">
+                            <img class="card-img-top" data-src="" alt="Image" style="height: 330px; width: 230px; display: block;" src="{{ book.image.url }}" data-holder-rendered="true">
 						</div>
 						<div class="col-md-9 mt-sm-20">
 							<p>
@@ -74,7 +74,6 @@
     
     
     <div>
-        <p>comments</p>
         {% for comment in comments %}
             <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ comment.user.profile.image.url }}">

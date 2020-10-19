@@ -11,13 +11,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 hr {
-    color: #5a2e98;
-    border-color: #5a2e98;
+    color: #992bff;
+    border-color: #992bff;
 }
 
 
 .main-content {
-  padding: 70px 10px;
+  padding: 80px 10px;
 }
 
 .bg-banner {
@@ -41,12 +41,13 @@ hr {
 }
 
 .site-header .navbar-nav .nav-link:hover {
-  color: #8403fc;
+  color: #dbdbdb;
+  
 }
 
 .site-header .navbar-nav .nav-link.active {
   font-weight: 500;
-  color: #992bff;
+  background-color: #992bff;
 }
 
 .content-section {
@@ -557,7 +558,7 @@ hr {
   -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  background-color: #011b3b;
+  background-color: #1c1c1c;
   margin-bottom: 30px;
 }
 .panel .panel-heading, .panel .panel-body, .panel .panel-footer {

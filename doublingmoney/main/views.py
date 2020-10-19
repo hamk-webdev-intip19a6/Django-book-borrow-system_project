@@ -43,6 +43,8 @@ class SearchResultView(ListView):
     template_name = 'main/search_results.html'
     context_object_name = "book_list"
     model = Book
+    ordering = ['-date_posted']
+    paginate_by = 6
     def get_queryset(self):
         query = self.request.GET.get('q')
         book_list = Book.objects.filter(
