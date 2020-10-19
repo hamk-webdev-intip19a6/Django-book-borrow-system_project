@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'crispy_forms', # pip install django-crispy-forms
     'star_ratings', # pip install django-star-ratings
+    'django_cleanup', # pip install django_cleanup
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
