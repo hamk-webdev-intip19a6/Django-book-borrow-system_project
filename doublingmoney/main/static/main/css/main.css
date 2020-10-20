@@ -50,10 +50,12 @@ hr {
   background-color: #992bff;
 }
 
+
+
 .content-section {
-  background: #ffffff;
+  background: #1c1c1c;
   padding: 10px 20px;
-  border: 1px solid #dddddd;
+  border: 1px solid #992bff;
   border-radius: 3px;
   margin-bottom: 20px;
 }
@@ -83,7 +85,7 @@ hr {
 }
 
 .article-metadata a:hover {
-  color: #49257b;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -202,6 +204,25 @@ hr {
 
 .form-box-txt:focus {
   border-color: #5a2e98;
+}
+
+.form-box-txt-area-default {
+  border:0;
+  background: none;
+  display: block;
+  border: 2px solid #fff;
+  padding: 8px;
+  outline: none;
+  color: white;
+  transition: 0.25s;
+  width: 100%;
+  height: 200px;
+}
+
+.form-box-txt-area-default:focus {
+  width: 100%;
+  border-color: #992bff;
+  height: 200px;
 }
 
 /*************************/

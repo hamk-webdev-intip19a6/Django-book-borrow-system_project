@@ -3,106 +3,76 @@
 {% load ratings %}
 {% block content %}
 <div class="container">
-<div class="main-content">
-
-<div class="col-md-14">
-
-
-                            <div class="panel panel-headline">
-                            
-                                <div class="panel-heading">
-                                <p style="float: right;">Copies: {{ book.copies }}<p>
-                                    <h4>{{ book.title }}</h4>
-                                    
-                                    
-
-                                    <hr>
-                                {% ratings book %}
-                                <hr>
-                                
-
-                <b> Author(s):</b>
-                <ul>
-                {% for a in book.author.all %}
-                    <li>{{ a.first_name }} {{ a.last_name }}</li>
-                {% endfor %}
-                </ul>
-<hr>
-
-<div class="row">
-						<div class="col-md-3">
+    <div class="main-content">
+        <div class="col-md-14">
+            <div class="panel panel-headline">
+                <div class="panel-heading">
+                    <p style="float: right;">Copies: {{ book.copies }}
+                    <p>
+                    <h4>{{ book.title }}</h4>
+                    <hr>
+                    {% ratings book %}
+                    <hr>
+                    <b> Author(s):</b>
+                    <ul>
+                        {% for a in book.author.all %}
+                        <li>{{ a.first_name }} {{ a.last_name }}</li>
+                        {% endfor %}
+                    </ul>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
                             <img class="card-img-top" data-src="" alt="Image" style="height: 330px; width: 230px; display: block;" src="{{ book.image.url }}" data-holder-rendered="true">
-						</div>
-						<div class="col-md-9 mt-sm-20">
-							<p>
-                            {{ book.description }}
+                        </div>
+                        <div class="col-md-9 mt-sm-20">
+                            <p>
+                                {{ book.description }}
                             </p>
-						</div>
-					</div>
-<hr>
-
-                                
-
-
-
-                                    <div class="profile-info">
-                                        <h4 class="heading">Publish Date</h4>
-                                        <ul class="list-unstyled list-justify">
-                                            <li><i class="fa fa-calendar user-profile-icon"></i> <span> {{ book.pub_date }} </span></li>
-                                        </ul>
-                                    </div>
-
-
-
-
-<hr>
-
-    <form action="{% url 'main:rent' book.id %}" method="GET">
-        {% csrf_token %}
-        <input type="submit" class="genric-btn purple" value="Rent this book">
-        
-                               
-    </form>
-                                </div>
-                                
-                            </div>
-</div>
-
-
-
-    
-    
-    
-    <div>
-        {% for comment in comments %}
-            <article class="media content-section">
-            <img class="rounded-circle article-img" src="{{ comment.user.profile.image.url }}">
-            <div class="media-body">
-                <div class="article-metadata">
-                <a class="mr-2" href="">{{ comment.user }}</a>
-                <small class="text-muted">{{ comment.date|date:"F d, Y" }}</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="profile-info">
+                        <h4 class="heading">Publish Date</h4>
+                        <ul class="list-unstyled list-justify">
+                            <li><i class="fa fa-calendar user-profile-icon"></i> <span> {{ book.pub_date }} </span></li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <form action="{% url 'main:rent' book.id %}" method="GET">
+                        {% csrf_token %}
+                        <input type="submit" class="genric-btn purple" value="Rent this book">
+                    </form>
                 </div>
-                <p class="article-content">{{ comment.review }}</p>
             </div>
+        </div>
+        <div>
+            {% for comment in comments %}
+            <article class="media content-section">
+                <img class="rounded-circle article-img" src="{{ comment.user.profile.image.url }}">
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <a class="mr-2" href="">{{ comment.user }}</a>
+                        <small class="text-muted">{{ comment.date|date:"F d, Y" }}</small>
+                    </div>
+                    <p class="article-content">{{ comment.review }}</p>
+                </div>
             </article>
-        {% endfor %}
+            {% endfor %}
+        </div>
+        {% if request.user.is_authenticated %}
+        <div class="content-section">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Comment</legend>
+                    <textarea class="form-box-txt-area-default" name="comment"></textarea>
+                </fieldset>
+                <div class="form-group">
+                    <button class="genric-btn purple-border" type="submit">Post</button>
+                </div>
+            </form>
+        </div>
+        {% endif %}
     </div>
-    
-    {% if request.user.is_authenticated %}
-    <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Comment</legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Post</button>
-            </div>
-        </form>
-    </div>
-    {% endif %}
 </div>
-</div>
-
 {% endblock content %}
