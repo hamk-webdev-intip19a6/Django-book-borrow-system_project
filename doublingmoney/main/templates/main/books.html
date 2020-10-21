@@ -8,7 +8,7 @@
                                 <li class="breadcrumb-item" style="color: #fff;" >Page</li>
                                 <li class="breadcrumb-item active" aria-current="page">
                                     <span style="color: #fff;">
-                                    Books
+                                    {{ page_obj.number }} 
                                     </span>
                                 </li>
                             </ol>
@@ -22,9 +22,8 @@
             <div class="col-md-4">
               <div class="card bg-dark-b mb-4 shadow-sm" style="width: 20rem;">
               
-                <a target="_blank" href="{% url 'main:main-book' book.id %}">
-                <img class="card-img-top" data-src="" alt="Thumbnail" style="height: 300px; width: 100%; display: block;" src="{{ book.image.url }}" data-holder-rendered="true">
-                </a>
+                <img class="card-img-top" data-src="" alt="Thumbnail" style="height: 330px; width: 100%; display: block;" src="{{ book.image.url }}" data-holder-rendered="true">
+
                 <hr>
             
                 <div class="card-body">
@@ -35,7 +34,7 @@
   
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <a href="{% url 'main:main-book' book.id %}" class="btn btn-sm genric-btn purple">Order</a>
+                      <a href="{% url 'main:main-book' book.id %}" class="btn btn-sm genric-btn purple-border">Order</a>
                     </div>
                     <small class="text-muted" >Available: {{ book.copies }}</small>
                   </div>

@@ -1,61 +1,46 @@
 {% extends "main/base.html" %}
+{% load ratings %}
 {% block content %}
-
-
-    <div class="jumbotron bg-banner">
-      <div class="text-white text-center">
-          <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Infernal Capes</strong></h2>
-          <p class="mx-5 mb-5">
-            Get your inferno today!
-          </p>
-      </div>
+<div class="jumbotron bg-banner">
+    <div class="text-white text-center">
+        <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Infernal Capes</strong></h2>
+        <p class="mx-5 mb-5">
+            Loan books easily
+        </p>
     </div>
-
-
-
-
+</div>
 <div class="container">
-{% if rate %}
-
-    <h1 style="text-align: center; color: white;">Top rated books</h1><hr>
-
-
-                
-          <div class="row">
-          
-          {% for book in rate.all %}
-            <div class="col-md-4">
-              <div class="card bg-dark-card mb-4 shadow-lg" style="width: 20rem;">
-              
-                <a target="_blank" href="{% url 'main:main-book' book.id %}">
-                <img class="card-img-top" data-src="" alt="Thumbnail" style="height: 300px; width: 100%; display: block;" src="{{ book.image.url }}" data-holder-rendered="true">
-                </a>
+    {% if rate %}
+    <h1 style="text-align: center; color: white;">Top rated books</h1>
+    <hr>
+    <div class="row">
+        {% for book in rate.all %}
+        <div class="col-md-4">
+            <div class="card bg-dark-card mb-4 shadow-lg" style="width: 20rem;">
+                <img class="card-img-top" data-src="" alt="Thumbnail" style="height: 330px; width: 100%; display: block;" src="{{ book.image.url }}" data-holder-rendered="true">
                 <hr>
-            
                 <div class="card-body">
-                
-                <b class="article-title">{{ book.title }}</b>
-                
-                  <p class="card-text"></p>
-  
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <a href="{% url 'main:main-book' book.id %}" class="btn btn-sm genric-btn purple">Order</a>
+                    <b class="article-title">{{ book.title }}</b>
+                    <p class="card-text"></p>
+                    {% ratings book 20 20 %}
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="{% url 'main:main-book' book.id %}" class="btn btn-sm genric-btn purple-border">Order</a>
+                        </div>
+                        <small class="text-muted" >Available: {{ book.copies }}</small>
                     </div>
-                    <small class="text-muted" >Available: {{ book.copies }}</small>
-                  </div>
                 </div>
-              </div>
             </div>
-            {% endfor %}
-
-          </div>
         </div>
-
-
+        {% endfor %}
+    </div>
+</div>
 {% else %}
 <p>No books are available.</p>
 {% endif %}
-
-
+<style>
+    .star-ratings-rating-average, .star-ratings-rating-count, .star-ratings-rating-user {
+    display: none;
+    }
+</style>
 {% endblock content %}

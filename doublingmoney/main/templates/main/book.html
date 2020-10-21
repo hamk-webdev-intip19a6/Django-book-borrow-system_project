@@ -16,7 +16,7 @@
                     <b> Author(s):</b>
                     <ul>
                         {% for a in book.author.all %}
-                        <li>{{ a.first_name }} {{ a.last_name }}</li>
+                          <li>{{ a.first_name }} {{ a.last_name }}</li>
                         {% endfor %}
                     </ul>
                     <hr>
@@ -40,7 +40,7 @@
                     <hr>
                     <form action="{% url 'main:rent' book.id %}" method="GET">
                         {% csrf_token %}
-                        <input type="submit" class="genric-btn purple" value="Rent this book">
+                        <input type="submit" class="genric-btn purple-border" value="Rent this book">
                     </form>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                 {% csrf_token %}
                 <fieldset class="form-group">
                     <legend class="border-bottom mb-4">Comment</legend>
-                    <textarea class="form-box-txt-area-default" name="comment"></textarea>
+                    <textarea class="form-box-txt-area-default" name="comment" required></textarea>
                 </fieldset>
                 <div class="form-group">
                     <button class="genric-btn purple-border" type="submit">Post</button>

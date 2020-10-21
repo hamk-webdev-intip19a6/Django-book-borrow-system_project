@@ -1,61 +1,81 @@
 {% extends "main/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-        <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
+<div class="main-content">
+    <div class="container">
+        <div class="content-section">
+            <!-- TABBED CONTENT -->
+            <div class="custom-tabs-line tabs-line-bottom left-aligned">
+                <ul class="nav" role="tablist">
+                    <li class="active"><a href="#tab-bottom-left1" role="tab" data-toggle="tab">Profile</a></li>
+                    <li><a href="#tab-bottom-left2" role="tab" data-toggle="tab">Rentals</a></li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab-bottom-left1">
+                    <div class="media">
+                        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+                        <div class="media-body">
+                            <h2 class="account-heading">{{ user.username }}</h2>
+                            <p class="text-secondary">{{ user.email }}</p>
+                        </div>
+                    </div>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Profile Info</legend>
+                            {{ u_form|crispy }}
+                            {{ p_form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="genric-btn purple-border" type="submit">Update</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="tab-bottom-left2">
+                    <h4>Rentals</h4>
+                    <hr>
+                    <script>
+                        $(document).ready(function() {
+                            $('#exampleg').DataTable();
+                        });
+                    </script>
+                    <form accept-charset="UTF-8">
+                        <table class="table table-bordered" id="exampleg" style="color: #fff;">
+                            <thead>
+                                <tr>
+                                    <th>Book title</th>
+                                    <th>Rental date</th>
+                                    <th>Expire date</th>
+                                    <th>Return Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% if rentals %}
+                              {% for item in rentals.all %}
+                            <tr>
+                                <td>{{ item.inventory }}</td>
+                                <td>{{ item.rental_date }}</td>
+                                <td>{{ item.expire_date }}</td>
+                                {% if item.book_returned == False %}
+                            <td>
+                                <form action="{% url 'main:returnBook' item.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="submit" class="genric-btn purple-border" value="Return Book">
+                                </form>
+                            </td>
+                                {% else %}
+                              <td>{{ item.return_date }}</td>
+                            </tr>
+                                {% endif %}
+                              {% endfor %}
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-      <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          <fieldset class="form-group">
-              <legend class="border-bottom mb-4">Profile Info</legend>
-              {{ u_form|crispy }}
-              {{ p_form|crispy }}
-          </fieldset>
-          <div class="form-group">
-              <button class="btn btn-outline-info" type="submit">Update</button>
-          </div>
-      </form>
     </div>
-
-    <div class="rentals">
-    {% if rentals %}
-    <h1> Rentals </h1>
-    <table style="width:100%">
-    <tr>
-      <th>Book title</th>
-      <th>Rental date</th>
-      <th>Expire date</th>
-      <th>Return Date</th>
-      <th></th>
-    </tr>
-      {% for item in rentals.all %}
-      <tr>
-        <td>{{ item.inventory }}</td>
-        <td>{{ item.rental_date }}</td>
-        <td>{{ item.expire_date }}</td>
-      {% if item.book_returned == False %}
-      <td>
-        <form action="{% url 'main:returnBook' item.id %}" method="post">
-          {% csrf_token %}
-          <input type="submit" value="Return Book">
-        </form>
-      </td>
-        </tr>
-        {% else %}
-        <td>{{ item.return_date }}</td>
-        </tr>
-        {% endif %}
-
-        {% endfor %}
-    {% else %}
-        <p> no active rentals </p>
-    {% endif %}
-    </table>
-    </div>
-
+</div>
 {% endblock content %}

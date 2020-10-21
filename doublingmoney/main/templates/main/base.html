@@ -5,17 +5,31 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/main.css' %}"/>
     
-    <link rel="stylesheet" type="text/css" href="{% static 'main/vendor/font-awesome/css/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}"/>
+    
+    <link rel="stylesheet" href="{% static 'main/vendor/font-awesome/css/font-awesome.min.css' %}"/>
+    
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{% static 'main/vendor/datatables/dataTables.bootstrap4.css' %}"/>
+    
+    
     {% if title %}
         <title>Doubling Money - {{ title }}</title>
     {% else %}
         <title>Doubling Money</title>
     {% endif %}
-    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}"/>
+    
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'main/img/logo.png' %}"/>
 </head>
 <body>
     <header class="site-header">
@@ -45,7 +59,7 @@
               <form method="GET" action="{% url 'main:search_results' %}" id="searchform" class="form-inline my-2 my-lg-0">
                                  <input class="form-box-txt" id="searchbox" name="q" type="text" value="{{ request.GET.q }}" placeholder="Search..." />
                                  <div class="input-group-append">
-                                    <button class="genric-btn purple" type="submit"><i class="fa fa-search"></i></button>
+                                    <button class="genric-btn purple-border" type="submit"><i class="fa fa-search"></i></button>
                                  </div>
             </form>
 
@@ -119,11 +133,12 @@
     
     
     
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <!-- JavaScript -->
+    <script src="{% static 'main/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'main/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.js' %}"></script>
+    
+    
 </body>
 </html>

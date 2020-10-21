@@ -15,6 +15,22 @@ hr {
     border-color: #992bff;
 }
 
+.form-control {
+  border:0;
+  background: #1c1c1c;
+  border: 1px solid #fff;
+  outline: none;
+  color: white;
+  transition: 0.25s;
+}
+
+.form-control:focus {
+  background: #1c1c1c;
+  color: white;
+  border-color: #5a2e98;
+}
+
+
 
 .main-content {
   padding: 80px 10px;
@@ -49,8 +65,6 @@ hr {
   font-weight: 500;
   background-color: #992bff;
 }
-
-
 
 .content-section {
   background: #1c1c1c;
@@ -107,7 +121,7 @@ hr {
 }
 
 
-/* Ossin editit */
+/* editit */
 .signup-btn {
     text-decoration: none;
     color: #fff;
@@ -187,6 +201,18 @@ hr {
 /**********************************
  * LOGIN / REGISTER / FORGOT FORMS
  **********************************/
+
+.form-box {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 15px;
+  color: #fff; /* Body Font Color */
+  text-align: center;
+}
+
+.form-box h1{
+  color: white;
+  text-transform: uppercase;
+}
 
 .form-box-txt {
   border:0;
@@ -519,12 +545,6 @@ hr {
   background-repeat: no-repeat;
 }
 
-
-
-
-
-
-
 .footer-area .footer-social a {
   color: #8ba4b1;
   width: 40px;
@@ -559,6 +579,7 @@ hr {
   font-size: 16px;
   line-height: 2;
 }
+
 
 
 
@@ -652,103 +673,62 @@ hr {
 
 
 
-/********************
- * PAGE: PROFILE
- ********************/
-.panel-profile {
-  position: relative;
+/* tabs */
+.tab-pane {
+  padding: 25px 15px;
 }
 
-.profile-left {
-  padding-left: 0;
-  float: left;
-  width: 35%;
-  height: 100%;
-  position: absolute;
-  background-color: #121212;
+.tab-content > .tab-pane {
+  display: none;
+}
+.tab-content > .active {
+  display: block;
 }
 
-.profile-right {
-  float: right;
-  width: 65%;
-  padding: 20px 25px;
-}
-.profile-right .heading {
-  margin-top: 0;
-}
-
-.profile-header {
-  position: relative;
-  text-align: center;
-  color: #fff;
-}
-
-.profile-header .name {
-  margin: 8px 0 0 0;
-  font-size: 22px;
-}
-.profile-header .online-status {
-  font-size: 13px;
-  position: relative;
-  top: -2px;
-}
-
-.profile-header .online-status:before {
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
+.custom-tabs-line ul {
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
   *zoom: 1;
   *display: inline;
-  content: '';
-  width: 8px;
-  height: 8px;
-  margin-right: 3px;
 }
-
-.profile-header .online-status.status-available:before {
-  background-color: #41B314;
+.custom-tabs-line ul > li {
+  float: left;
 }
-
-.profile-header .profile-stat {
-  position: relative;
+.custom-tabs-line ul > li a {
+  color: #fff;
+  font-weight: normal;
+}
+.custom-tabs-line ul > li a:hover, .custom-tabs-line ul > li a:focus {
+  color: #f0f0f0;
+  background-color: transparent;
+}
+.custom-tabs-line ul > li a:focus {
+  outline: none;
+}
+.custom-tabs-line ul.nav-pills a:hover, .custom-tabs-line ul.nav-pills a:focus {
+  color: #fff;
   background-color: #00AAFF;
 }
-.profile-header .profile-stat .stat-item {
-  padding: 20px;
-  position: relative;
+.custom-tabs-line.tabs-line-bottom {
+  border-bottom: 1px solid #eaeaea;
 }
-.profile-header .profile-stat .stat-item:after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 1px;
-  height: 100%;
-  background-color: #33bbff;
+.custom-tabs-line.tabs-line-bottom ul > li {
+  margin-bottom: -1px;
 }
-.profile-header .profile-stat .stat-item:last-child:after {
-  display: none;
+.custom-tabs-line.tabs-line-bottom a {
+  border-bottom: 1px solid transparent;
 }
-.profile-header .profile-stat .stat-item span {
-  display: block;
+.custom-tabs-line.tabs-line-bottom .active a {
+  border-bottom: 2px solid #00AAFF;
 }
 
-.profile-detail {
-  padding-bottom: 30px;
-}
+.custom-tabs-line.left-aligned {
+  text-align: left; }
 
-.profile-info {
-  padding: 0 20px;
-  margin: 40px 0;
-}
-.profile-info .heading {
-  margin: 0 0 10px 0;
-  font-weight: 600;
-}
-.profile-info ul > li {
-  margin-bottom: 8px;
-}
+.custom-tabs-line.right-aligned {
+  text-align: right; }
+
+@media screen and (max-width: 768px) {
+  .custom-tabs-line ul li.active > a {
+    margin-bottom: -1px; } }

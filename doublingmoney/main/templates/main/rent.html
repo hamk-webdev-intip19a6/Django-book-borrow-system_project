@@ -1,12 +1,22 @@
 {% extends "main/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
-
-    <p>title: {{ book.title }}<p>
-
-    <form action="{% url 'main:rent' book.id %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <br>
-        <input type="submit" value="Submit">
-    </form>
+<div class="container">
+    <div class="main-content">
+        <div class="col-md-14">
+            <div class="panel panel-headline">
+                <div class="panel-heading">
+                    <h4>{{ book.title }}</h4>
+                    <hr>
+                    <form action="{% url 'main:rent' book.id %}" method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <br>
+                        <input type="submit" class="genric-btn purple-border" value="Rent this book">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

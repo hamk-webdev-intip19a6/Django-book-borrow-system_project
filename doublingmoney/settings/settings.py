@@ -116,6 +116,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CRISPY_CLASS_CONVERTERS = {
+    'textinput': "form-box-txt cst__radius",
+    'urlinput': "form-box-txt cst__radius",
+    #'numberinput': "form-control cst__radius",
+    'emailinput': "form-box-txt cst__radius",
+    #'dateinput': "form-control cst__radius",
+    #'textarea': "form-control cst__radius",
+    'passwordinput': "form-box-txt cst__radius",
+    #'select': "form-control cst__radius",
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
