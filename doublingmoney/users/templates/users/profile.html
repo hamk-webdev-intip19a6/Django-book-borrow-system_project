@@ -3,16 +3,23 @@
 {% block content %}
 <div class="main-content">
     <div class="container">
+        {% if messages %}
+          {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+          {% endfor %}
+        {% endif %}
         <div class="content-section">
-            <!-- TABBED CONTENT -->
             <div class="custom-tabs-line tabs-line-bottom left-aligned">
-                <ul class="nav" role="tablist">
-                    <li class="active"><a href="#tab-bottom-left1" role="tab" data-toggle="tab">Profile</a></li>
-                    <li><a href="#tab-bottom-left2" role="tab" data-toggle="tab">Rentals</a></li>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" style="background-color: transparent; color: white;" href="#tab-bottom-left1" role="tab" data-toggle="tab">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" style="background-color: transparent; color: white;" href="#tab-bottom-left2" role="tab" data-toggle="tab">Rentals</a></li>
                 </ul>
             </div>
-            <div class="tab-content">
-                <div class="tab-pane active" id="tab-bottom-left1">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="tab-bottom-left1" role="tabpanel">
+                
                     <div class="media">
                         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
                         <div class="media-body">
@@ -32,7 +39,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="tab-pane fade" id="tab-bottom-left2">
+                <div class="tab-pane fade" id="tab-bottom-left2" role="tabpanel2">
                     <h4>Rentals</h4>
                     <hr>
                     <script>
@@ -40,17 +47,16 @@
                             $('#exampleg').DataTable();
                         });
                     </script>
-                    <form accept-charset="UTF-8">
-                        <table class="table table-bordered" id="exampleg" style="color: #fff;">
-                            <thead>
-                                <tr>
-                                    <th>Book title</th>
-                                    <th>Rental date</th>
-                                    <th>Expire date</th>
-                                    <th>Return Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                    <table class="table table-bordered" id="exampleg" style="color: #fff;">
+                        <thead>
+                            <tr>
+                                <th>Book title</th>
+                                <th>Rental date</th>
+                                <th>Expire date</th>
+                                <th>Return Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             {% if rentals %}
                               {% for item in rentals.all %}
                             <tr>
@@ -58,21 +64,20 @@
                                 <td>{{ item.rental_date }}</td>
                                 <td>{{ item.expire_date }}</td>
                                 {% if item.book_returned == False %}
-                            <td>
-                                <form action="{% url 'main:returnBook' item.id %}" method="post">
-                                    {% csrf_token %}
-                                    <input type="submit" class="genric-btn purple-border" value="Return Book">
-                                </form>
-                            </td>
+                                <td>
+                                    <form action="{% url 'main:returnBook' item.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="submit" class="genric-btn purple-border" value="Return Book">
+                                    </form>
+                                </td>
                                 {% else %}
-                              <td>{{ item.return_date }}</td>
+                                <td>{{ item.return_date }}</td>
                             </tr>
                                 {% endif %}
                               {% endfor %}
                             {% endif %}
-                            </tbody>
-                        </table>
-                    </form>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -1,144 +1,108 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css"/>
-    
-    <link rel="stylesheet" href="{% static 'main/css/main.css' %}"/>
-    
-    <link rel="stylesheet" href="{% static 'main/vendor/font-awesome/css/font-awesome.min.css' %}"/>
-    
-    <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
-    
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{% static 'main/vendor/datatables/dataTables.bootstrap4.css' %}"/>
-    
-    
-    {% if title %}
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="{% static 'main/css/main.css' %}"/>
+        <link rel="stylesheet" href="{% static 'main/vendor/font-awesome/css/font-awesome.min.css' %}"/>
+        <!-- GOOGLE FONTS -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="{% static 'main/vendor/datatables/dataTables.bootstrap4.css' %}"/>
+        {% if title %}
         <title>Doubling Money - {{ title }}</title>
-    {% else %}
+        {% else %}
         <title>Doubling Money</title>
-    {% endif %}
-    
-    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}"/>
-    
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'main/img/logo.png' %}"/>
-</head>
-<body>
-    <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark-b fixed-top">
-        <div class="container">
-        
-        <a class="navbar-brand mr-4" style="text-align: center; color: #8403fc;font-family:'Courier New';text-shadow: 0 0 20px #49257b;" href="{% url 'main:main-home' %}">EzLoans</a>
-             
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-
-            
-            {% url 'main:main-home' as h %}
-            {% url 'main:main-books' as b %}
-              <a {% if request.path == h %} class="nav-item nav-link active"  {% else %} class="nav-item nav-link" {% endif %} href="{% url 'main:main-home' %}">Home</a>
-              <a {% if request.path == b %} class="nav-item nav-link active"  {% else %} class="nav-item nav-link" {% endif %} href="{% url 'main:main-books' %}">Books</a>
-
-            </div>
-            
-            <div class="navbar-nav mr-auto">
-
-            
-  
-              <form method="GET" action="{% url 'main:search_results' %}" id="searchform" class="form-inline my-2 my-lg-0">
-                                 <input class="form-box-txt" id="searchbox" name="q" type="text" value="{{ request.GET.q }}" placeholder="Search..." />
-                                 <div class="input-group-append">
-                                    <button class="genric-btn purple-border" type="submit"><i class="fa fa-search"></i></button>
-                                 </div>
-            </form>
-
-            
-            </div>
-            <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-            
-                                            
-              {% if user.is_authenticated %}
-<!-- Example single danger button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-primary dropdown-toggle" style="background-color: #5a2e98;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-     <i class="fa fa-user" aria-hidden="true"></i> {{ user.username }}
-  </button>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-  </div>
-</div>
-              {% else %}
-                <a href="{% url 'login' %}" class="login-btn"><span>Log in</span></a>
-                <a href="{% url 'register' %}" class="signup-btn"><span>Register</span></a>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
-
-
-
-
-    <main role="main" class="vhd">
-          {% block content %}{% endblock %}
-    </main>
-
-    
-    
-    
-    
-    <footer class="footer">
-        <!-- Footer Start-->
-        <div class="footer-area">
-            <div class="container">
-
-                <div class="footer-bottom">
-                    <div class="row d-flex justify-content-between align-items-center">
-                        <div class="col-xl-9 col-lg-9 ">
-                            <div class="footer-copy-right">
-                                <p>
-                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> EzLoans </p>
-                            </div>
+        {% endif %}
+        <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}"/>
+        <link rel="icon" type="image/png" sizes="96x96" href="{% static 'main/img/logo.png' %}"/>
+    </head>
+    <body>
+        <header class="site-header">
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark-b fixed-top">
+                <div class="container">
+                    <a class="navbar-brand mr-4" style="text-align: center; color: #8403fc;font-family:'Courier New';text-shadow: 0 0 20px #49257b;" href="{% url 'main:main-home' %}">EzLoans</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarToggle">
+                        <div class="navbar-nav mr-auto">
+                            {% url 'main:main-home' as h %}
+                            {% url 'main:main-books' as b %}
+                            <a {% if request.path == h %} class="nav-item nav-link active"  {% else %} class="nav-item nav-link" {% endif %} href="{% url 'main:main-home' %}">Home</a>
+                            <a {% if request.path == b %} class="nav-item nav-link active"  {% else %} class="nav-item nav-link" {% endif %} href="{% url 'main:main-books' %}">Books</a>
                         </div>
-                        <div class="col-xl-3 col-lg-3">
-                            <!-- Footer Social -->
-                            <div class="footer-social f-right">
-                                <a href="#"><i class="fa fa-facebook-f"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-globe"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
+                        <div class="navbar-nav mr-auto">
+                            <form method="GET" action="{% url 'main:search_results' %}" id="searchform" class="form-inline my-2 my-lg-0">
+                                <input class="form-box-txt" id="searchbox" name="q" type="text" value="{{ request.GET.q }}" placeholder="Search..." />
+                                <div class="input-group-append">
+                                    <button class="genric-btn purple-border" type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Navbar Right Side -->
+                        <div class="navbar-nav">
+                            {% if user.is_authenticated %}
+                            <!-- Example single danger button -->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" style="background-color: #5a2e98;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user" aria-hidden="true"></i> {{ user.username }}
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                                </div>
+                            </div>
+                            {% else %}
+                            <a href="{% url 'login' %}" class="login-btn"><span>Log in</span></a>
+                            <a href="{% url 'register' %}" class="signup-btn"><span>Register</span></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main role="main" class="vhd">
+            {% block content %}{% endblock %}
+        </main>
+        <footer class="footer">
+            <!-- Footer Start-->
+            <div class="footer-area">
+                <div class="container">
+                    <div class="footer-bottom">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="col-xl-9 col-lg-9 ">
+                                <div class="footer-copy-right">
+                                    <p>
+                                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> EzLoans 
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3">
+                                <!-- Footer Social -->
+                                <div class="footer-social f-right">
+                                    <a href="#"><i class="fa fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-globe"></i></a>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-               </div>
+                </div>
             </div>
-        </div>
-        <!-- Footer End-->
-    </footer>
-    
-    
-    
-    <!-- JavaScript -->
-    <script src="{% static 'main/vendor/datatables/jquery.dataTables.min.js' %}"></script>
-    <script src="{% static 'main/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.js' %}"></script>
-    
-    
-</body>
+            <!-- Footer End-->
+        </footer>
+        <!-- JavaScript -->
+        <script src="{% static 'main/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'main/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+        <script src="{% static 'star-ratings/js/dist/star-ratings.js' %}"></script>
+    </body>
 </html>

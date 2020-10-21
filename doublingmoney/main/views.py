@@ -123,5 +123,7 @@ def returnSuccess(request):
     messages.success(request, f'Book has been returned succesfully')
     return HttpResponseRedirect(reverse('profile'))
 
+'''
 def about(request):
     return render(request, 'main/about.html', {'title': 'About'})
+'''

@@ -33,7 +33,7 @@ def profile(request):
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
-    rents = Rental.objects.filter(user_id=uid).order_by('book_returned', 'expire_date')[:5]
+    rents = Rental.objects.filter(user_id=uid).order_by('book_returned', 'expire_date')
     context = {
         'u_form': u_form,
         'p_form': p_form,

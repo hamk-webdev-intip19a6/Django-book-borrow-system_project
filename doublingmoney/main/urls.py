@@ -10,5 +10,5 @@ urlpatterns = [
     path('<book_id>/rent/', views.rent, name='rent'),
     path('profile/return/<rental_id>/', views.returnBook, name='returnBook'),
     path('profile/return/returnSuccess/', views.returnSuccess, name="returnSuccess"),
-    path('about/', views.about, name='main-about'),
+    #path('about/', views.about, name='main-about'),
 ]
