@@ -5,6 +5,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
 
+handler404 = 'main.views.page_not_found'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),

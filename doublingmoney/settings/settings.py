@@ -27,7 +27,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Application definition
-
+# pip install Pillow
 INSTALLED_APPS = [
     'main.apps.MainConfig',
     'users.apps.UsersConfig',

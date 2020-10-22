@@ -127,3 +127,9 @@ def returnSuccess(request):
 def about(request):
     return render(request, 'main/about.html', {'title': 'About'})
 '''
+
+# HTTP Error 404
+def page_not_found(request, exception):
+        response = render(request, "main/errors/404.html", {} )
+        response.status_code = 404
+        return response

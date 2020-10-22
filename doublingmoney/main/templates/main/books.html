@@ -32,7 +32,9 @@
             {% endfor %}
         </div>
         {% else %}
-        <p>No books are available.</p>
+        <div class="card bg-dark-b">
+            <div class="card-body">No books are available.</div>
+        </div>
         {% endif %}
         {% if is_paginated %}
         {% if page_obj.has_previous %}
