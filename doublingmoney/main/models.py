@@ -15,7 +15,7 @@ class Author(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=64)
     author = models.ManyToManyField(Author)
-    description = models.CharField(max_length=128)
+    description = models.TextField()
     pub_date = models.DateField('date published')
     image = models.ImageField(default='default_book.jpg', upload_to='book_pics')
     last_update = models.DateTimeField(default=timezone.now)
