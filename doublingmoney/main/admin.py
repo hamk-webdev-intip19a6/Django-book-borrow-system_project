@@ -3,9 +3,8 @@ from django.contrib import admin
 from .models import Book, Review, Author, Inventory, Rental
 
 class BookAdmin(admin.ModelAdmin):
-   
     fieldsets = [
-        (None,               {'fields': ['title', 'description', 'image']}),
+        (None, {'fields': ['title', 'description', 'image']}),
         ('Date information', {'fields': ['pub_date']}),
         ('Author information',{'fields': ['author']})
     ]

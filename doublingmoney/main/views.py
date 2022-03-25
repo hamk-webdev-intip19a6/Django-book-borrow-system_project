@@ -50,27 +50,26 @@ class SearchResultView(ListView):
         book_list = Book.objects.filter(
                 inventory__available__isnull=False).annotate(
                     available=Count(
-                        Case(When(inventory__available=True, then=Value(1))
-                    )
+                        Case( When(inventory__available=True, then=Value(1)) )
                 )
             )
         if query:
             # | Q(book_author__author_id__first_name__icontains=query)
             # | Q(book_author__author_id__last_name__icontains=query)
-            book_list = book_list.filter(title__icontains=query)      
+            book_list = book_list.filter(title__icontains=query)
         return book_list
 
 class BookView(DetailView, CreateView):
     template_name = 'main/book.html'
     context_object_name = "book"
     model = Book
-    
+
     form_class = CommentForm
-    
+
     def get_success_url(self):
         b = self.kwargs['pk']
         return reverse('main:main-book', kwargs={ 'pk': b } )
-    
+
     def form_valid(self, form):
         b = self.kwargs['pk']
         form.instance.user = self.request.user
@@ -78,13 +77,13 @@ class BookView(DetailView, CreateView):
         form.instance.book_id = b
         form.instance.review = comment
         return super().form_valid(form)
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         b = self.kwargs['pk']
         context['comments'] = Review.objects.filter( book=b )
         return context
-        
+
     def get_queryset(self):
         q = Book.objects.filter(inventory__available__isnull=False).annotate(copies=Count(Case(When(inventory__available=True, then=Value(1) ) ) ) )
         return q
@@ -93,7 +92,7 @@ class BookView(DetailView, CreateView):
 def rent(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
     inventory = Inventory.objects.filter(available=True, book__id=book_id).first()
-    
+
     if request.method == 'POST':
         form = RentForm(request.POST)
 

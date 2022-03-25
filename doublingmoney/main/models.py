@@ -26,7 +26,6 @@ class Book(models.Model):
 class Inventory(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     available = models.BooleanField('Available', default=True)
-    
     def __str__(self):
         return f'{self.book}'
 
@@ -37,7 +36,6 @@ class Rental(models.Model):
     expire_date = models.DateTimeField(default=timezone.now)
     book_returned = models.BooleanField(default=False)
     return_date = models.DateTimeField(null=True)
-
     def __str__(self):
         return f'{self.inventory} {self.rental_date} {self.expire_date}'
 
@@ -46,6 +44,5 @@ class Review(models.Model):
     date = models.DateTimeField(default=timezone.now)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
     def __str__(self):
         return f'{self.user.username} Reviews'

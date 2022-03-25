@@ -19,7 +19,7 @@ class RentForm(forms.ModelForm):
     class Meta:
         model = Rental
         fields = []
-        
+
     def clean_data(self):
         data = self.cleaned_data['duration']
         if (data):
